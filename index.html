@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natvarnand Restaurant | Authentic Indian Cuisine & Online Ordering</title>
+  <meta name="description" content="Natvarnand Restaurant — order delicious Indian cuisine online. Explore our menu of starters, main course, fast food, drinks and desserts with fast delivery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===================== PAGE LOADER ===================== -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-flame">🍛</div>
+      <h2>Spice Garden</h2>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ===================== NOTIFICATION TOAST ===================== -->
+  <div id="notification" class="notification hidden">
+    <div id="notification-icon"></div>
+    <div id="notification-text"></div>
+    <button class="notification-close" onclick="hideNotification()">&times;</button>
+  </div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-icon">🍛</span>
+        <span class="logo-text">Natvarnand</span>
+      </a>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+        <li><a href="#menu" class="nav-link" data-page="menu">Menu</a></li>
+        <li><a href="#order" class="nav-link" data-page="order">Order Online</a></li>
+        <li><a href="#login" class="nav-link" data-page="login">Login</a></li>
+        <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+        <li><a href="#admin" class="nav-link" data-page="admin">Admin</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button id="cart-btn" class="cart-btn" onclick="window.location.hash='order'">
+          <span class="cart-icon">🛒</span>
+          <span id="cart-count" class="cart-count">0</span>
+        </button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <span class="theme-icon sun">☀️</span>
+          <span class="theme-icon moon">🌙</span>
+        </button>
+        <button id="hamburger" class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main id="main-content" class="main-content">
+
+    <!-- ========== HOME PAGE ========== -->
+    <section id="page-home" class="page active">
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="hero-particles"></div>
+        <div class="hero-content">
+          <h1 class="hero-title anim-fade-down">
+            Welcome to <span class="text-gradient">Natvarnand</span>
+          </h1>
+          <p class="hero-subtitle anim-fade-up">Experience the finest flavors of authentic Indian cuisine, crafted with love and tradition.</p>
+          <div class="hero-buttons anim-fade-up delay-2">
+            <a href="#menu" class="btn btn-primary btn-glow">Explore Menu</a>
+            <a href="#order" class="btn btn-outline">Order Now</a>
+          </div>
+        </div>
+        <div class="hero-scroll-indicator">
+          <span>Scroll Down</span>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+
+      <!-- Welcome Section -->
+      <div class="section welcome-section">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">About Us</span>
+            <h2 class="section-title">A Taste of <span class="text-gradient">Tradition</span></h2>
+            <p class="section-desc">At Natvarnand, we bring you the rich heritage of Indian cooking with fresh ingredients and bold spices. Every dish is a journey through flavor.</p>
+          </div>
+          <div class="welcome-grid">
+            <div class="welcome-card reveal">
+              <div class="welcome-icon">🌶️</div>
+              <h3>Fresh Spices</h3>
+              <p>Handpicked spices sourced directly from farms across India for authentic flavor.</p>
+            </div>
+            <div class="welcome-card reveal delay-1">
+              <div class="welcome-icon">👨‍🍳</div>
+              <h3>Master Chefs</h3>
+              <p>Our expert chefs bring decades of culinary experience to every dish they create.</p>
+            </div>
+            <div class="welcome-card reveal delay-2">
+              <div class="welcome-icon">🚀</div>
+              <h3>Fast Delivery</h3>
+              <p>Hot and fresh food delivered to your doorstep within 30 minutes, guaranteed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Items -->
+      <div class="section featured-section">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">Popular</span>
+            <h2 class="section-title">Featured <span class="text-gradient">Dishes</span></h2>
+          </div>
+          <div class="featured-grid" id="featured-grid">
+            <!-- Populated by JS -->
+          </div>
+          <div class="text-center reveal">
+            <a href="#menu" class="btn btn-primary btn-glow btn-lg">View Full Menu</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="section stats-section">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-card reveal">
+              <div class="stat-number" data-count="5000">0</div>
+              <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-card reveal delay-1">
+              <div class="stat-number" data-count="150">0</div>
+              <div class="stat-label">Menu Items</div>
+            </div>
+            <div class="stat-card reveal delay-2">
+              <div class="stat-number" data-count="25">0</div>
+              <div class="stat-label">Expert Chefs</div>
+            </div>
+            <div class="stat-card reveal delay-3">
+              <div class="stat-number" data-count="10">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MENU PAGE ========== -->
+    <section id="page-menu" class="page">
+      <div class="page-hero page-hero-menu">
+        <h1 class="page-hero-title anim-fade-down">Our <span class="text-gradient">Menu</span></h1>
+        <p class="page-hero-sub anim-fade-up">Explore our carefully crafted dishes made with the finest ingredients</p>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="menu-filters reveal" id="menu-filters">
+            <button class="menu-filter-btn active" data-category="all">All</button>
+            <button class="menu-filter-btn" data-category="starters">Starters</button>
+            <button class="menu-filter-btn" data-category="main-course">Main Course</button>
+            <button class="menu-filter-btn" data-category="fast-food">Fast Food</button>
+            <button class="menu-filter-btn" data-category="drinks">Drinks</button>
+            <button class="menu-filter-btn" data-category="desserts">Desserts</button>
+          </div>
+          <div class="menu-grid" id="menu-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ORDER / CART PAGE ========== -->
+    <section id="page-order" class="page">
+      <div class="page-hero page-hero-order">
+        <h1 class="page-hero-title anim-fade-down">Your <span class="text-gradient">Order</span></h1>
+        <p class="page-hero-sub anim-fade-up">Review your selected items and proceed to checkout</p>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="cart-wrapper">
+            <div class="cart-items" id="cart-items">
+              <!-- Populated by JS -->
+            </div>
+            <div class="cart-summary glass-card" id="cart-summary">
+              <h3>Order Summary</h3>
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">₹0</span>
+              </div>
+              <div class="summary-row">
+                <span>Delivery</span>
+                <span id="cart-delivery">₹40</span>
+              </div>
+              <div class="summary-row">
+                <span>Tax (5%)</span>
+                <span id="cart-tax">₹0</span>
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-row summary-total">
+                <span>Total</span>
+                <span id="cart-total">₹0</span>
+              </div>
+              <button class="btn btn-primary btn-glow btn-block" id="checkout-btn" onclick="proceedToCheckout()">
+                Proceed to Checkout
+              </button>
+            </div>
+          </div>
+          <div class="cart-empty" id="cart-empty" style="display:none;">
+            <div class="empty-icon">🛒</div>
+            <h3>Your cart is empty</h3>
+            <p>Add some delicious items from our menu!</p>
+            <a href="#menu" class="btn btn-primary">Browse Menu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CUSTOMER DETAILS PAGE ========== -->
+    <section id="page-customer" class="page">
+      <div class="page-hero page-hero-customer">
+        <h1 class="page-hero-title anim-fade-down">Delivery <span class="text-gradient">Details</span></h1>
+        <p class="page-hero-sub anim-fade-up">Tell us where to deliver your food</p>
+      </div>
+      <div class="section">
+        <div class="container container-sm">
+          <form class="form-card glass-card" id="customer-form" onsubmit="submitCustomerForm(event)">
+            <div class="form-grid">
+              <div class="input-group">
+                <input type="text" id="cust-name" class="form-input" placeholder=" " required>
+                <label for="cust-name" class="form-label">Full Name</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="tel" id="cust-phone" class="form-input" placeholder=" " required pattern="[0-9]{10}">
+                <label for="cust-phone" class="form-label">Phone Number</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group full-width">
+                <input type="email" id="cust-email" class="form-input" placeholder=" " required>
+                <label for="cust-email" class="form-label">Email Address</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group full-width">
+                <input type="text" id="cust-address" class="form-input" placeholder=" " required>
+                <label for="cust-address" class="form-label">Delivery Address</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="text" id="cust-city" class="form-input" placeholder=" " required>
+                <label for="cust-city" class="form-label">City</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="text" id="cust-pincode" class="form-input" placeholder=" " required pattern="[0-9]{6}">
+                <label for="cust-pincode" class="form-label">Pincode</label>
+                <span class="input-line"></span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-glow btn-block">Continue to Payment</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== LOGIN / SIGNUP PAGE ========== -->
+    <section id="page-login" class="page">
+      <div class="page-hero page-hero-login">
+        <h1 class="page-hero-title anim-fade-down">Welcome <span class="text-gradient">Back</span></h1>
+        <p class="page-hero-sub anim-fade-up">Sign in to your account or create a new one</p>
+      </div>
+      <div class="section">
+        <div class="container container-xs">
+          <div class="auth-card glass-card">
+            <div class="auth-tabs">
+              <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')">Login</button>
+              <button class="auth-tab" data-tab="signup" onclick="switchAuthTab('signup')">Sign Up</button>
+              <div class="auth-tab-indicator"></div>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="login-form" onsubmit="handleLogin(event)">
+              <div class="input-group">
+                <input type="text" id="login-username" class="form-input" placeholder=" " required>
+                <label for="login-username" class="form-label">Username or Email</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="password" id="login-password" class="form-input" placeholder=" " required>
+                <label for="login-password" class="form-label">Password</label>
+                <span class="input-line"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-glow btn-block">Login</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form" id="signup-form" onsubmit="handleSignup(event)">
+              <div class="input-group">
+                <input type="text" id="signup-username" class="form-input" placeholder=" " required>
+                <label for="signup-username" class="form-label">Username</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="email" id="signup-email" class="form-input" placeholder=" " required>
+                <label for="signup-email" class="form-label">Email</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="password" id="signup-password" class="form-input" placeholder=" " required minlength="6">
+                <label for="signup-password" class="form-label">Password</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="password" id="signup-confirm" class="form-input" placeholder=" " required minlength="6">
+                <label for="signup-confirm" class="form-label">Confirm Password</label>
+                <span class="input-line"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-glow btn-block">Create Account</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PAYMENT PAGE ========== -->
+    <section id="page-payment" class="page">
+      <div class="page-hero page-hero-payment">
+        <h1 class="page-hero-title anim-fade-down">Secure <span class="text-gradient">Payment</span></h1>
+        <p class="page-hero-sub anim-fade-up">Choose your preferred payment method</p>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="payment-wrapper">
+            <div class="payment-methods glass-card">
+              <h3>Payment Method</h3>
+              <div class="payment-tabs">
+                <button class="pay-tab active" data-method="card" onclick="switchPaymentTab('card')">
+                  <span class="pay-tab-icon">💳</span> Card
+                </button>
+                <button class="pay-tab" data-method="upi" onclick="switchPaymentTab('upi')">
+                  <span class="pay-tab-icon">📱</span> UPI
+                </button>
+                <button class="pay-tab" data-method="cod" onclick="switchPaymentTab('cod')">
+                  <span class="pay-tab-icon">💵</span> COD
+                </button>
+              </div>
+
+              <!-- Card Form -->
+              <form class="pay-form active" id="card-form" onsubmit="processPayment(event, 'card')">
+                <div class="input-group">
+                  <input type="text" id="card-number" class="form-input" placeholder=" " maxlength="19" required>
+                  <label for="card-number" class="form-label">Card Number</label>
+                  <span class="input-line"></span>
+                </div>
+                <div class="form-row">
+                  <div class="input-group">
+                    <input type="text" id="card-expiry" class="form-input" placeholder=" " maxlength="5" required>
+                    <label for="card-expiry" class="form-label">MM/YY</label>
+                    <span class="input-line"></span>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" id="card-cvv" class="form-input" placeholder=" " maxlength="3" required>
+                    <label for="card-cvv" class="form-label">CVV</label>
+                    <span class="input-line"></span>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-glow btn-block">Pay Now</button>
+              </form>
+
+              <!-- UPI Form -->
+              <form class="pay-form" id="upi-form" onsubmit="processPayment(event, 'upi')">
+                <div class="input-group">
+                  <input type="text" id="upi-id" class="form-input" placeholder=" " required>
+                  <label for="upi-id" class="form-label">UPI ID (e.g. name@upi)</label>
+                  <span class="input-line"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-glow btn-block">Pay via UPI</button>
+              </form>
+
+              <!-- COD Form -->
+              <form class="pay-form" id="cod-form" onsubmit="processPayment(event, 'cod')">
+                <p class="cod-text">Pay with cash when your order arrives at your doorstep. No advance payment required.</p>
+                <button type="submit" class="btn btn-primary btn-glow btn-block">Place Order (COD)</button>
+              </form>
+            </div>
+
+            <div class="payment-summary glass-card" id="payment-summary">
+              <h3>Order Summary</h3>
+              <div id="payment-items">
+                <!-- Populated by JS -->
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-row summary-total">
+                <span>Total</span>
+                <span id="payment-total">₹0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Success Modal -->
+      <div class="modal-overlay" id="payment-success-modal">
+        <div class="modal glass-card">
+          <div class="success-animation">
+            <div class="success-checkmark">
+              <svg viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="25" fill="none"/>
+                <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="modal-title">Payment Successful!</h2>
+          <p class="modal-text">Your order has been placed successfully. Thank you for ordering from Natvarnand!</p>
+          <p class="modal-order-id" id="modal-order-id">Order #SG12345</p>
+          <button class="btn btn-primary btn-glow" onclick="closeSuccessModal()">Back to Home</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT PAGE ========== -->
+    <section id="page-contact" class="page">
+      <div class="page-hero page-hero-contact">
+        <h1 class="page-hero-title anim-fade-down">Get in <span class="text-gradient">Touch</span></h1>
+        <p class="page-hero-sub anim-fade-up">We'd love to hear from you</p>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="contact-info-grid reveal">
+            <div class="contact-info-card glass-card">
+              <div class="contact-icon">📍</div>
+              <h3>Our Location</h3>
+              <p>Village Kachri, Dist. Baran<br>Rajasthan, India</p>
+            </div>
+            <div class="contact-info-card glass-card">
+              <div class="contact-icon">📞</div>
+              <h3>Phone</h3>
+              <p>+91 82786 42578<br>+91 11 2345 6789</p>
+            </div>
+            <div class="contact-info-card glass-card">
+              <div class="contact-icon">✉️</div>
+              <h3>Email</h3>
+              <p>natvarnand@gmail.com<br>orders@natvarnand@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-wrapper">
+            <div class="contact-map reveal">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.123456789!2d77.2090!3d28.6139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDM2JzUwLjEiTiA3N8KwMTInMzIuNCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Spice Garden Location"></iframe>
+            </div>
+            <form class="contact-form glass-card reveal" id="contact-form" onsubmit="submitContactForm(event)">
+              <h3>Send us a Message</h3>
+              <div class="input-group">
+                <input type="text" id="contact-name" class="form-input" placeholder=" " required>
+                <label for="contact-name" class="form-label">Your Name</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="email" id="contact-email" class="form-input" placeholder=" " required>
+                <label for="contact-email" class="form-label">Email Address</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="text" id="contact-subject" class="form-input" placeholder=" " required>
+                <label for="contact-subject" class="form-label">Subject</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <textarea id="contact-message" class="form-input form-textarea" placeholder=" " required></textarea>
+                <label for="contact-message" class="form-label">Message</label>
+                <span class="input-line"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-glow btn-block">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ADMIN PAGE ========== -->
+    <section id="page-admin" class="page">
+      <!-- Admin Login -->
+      <div id="admin-login-screen" class="admin-login-screen">
+        <div class="page-hero page-hero-admin">
+          <h1 class="page-hero-title anim-fade-down">Admin <span class="text-gradient">Panel</span></h1>
+          <p class="page-hero-sub anim-fade-up">Restricted access — authorized personnel only</p>
+        </div>
+        <div class="section">
+          <div class="container container-xs">
+            <form class="form-card glass-card" id="admin-login-form" onsubmit="adminLogin(event)">
+              <div class="input-group">
+                <input type="text" id="admin-user" class="form-input" placeholder=" " required>
+                <label for="admin-user" class="form-label">Admin Username</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="password" id="admin-pass" class="form-input" placeholder=" " required>
+                <label for="admin-pass" class="form-label">Password</label>
+                <span class="input-line"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-glow btn-block">Login to Dashboard</button>
+              <p class="admin-hint">Demo: admin / admin123</p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Dashboard -->
+      <div id="admin-dashboard" class="admin-dashboard" style="display:none;">
+        <div class="admin-sidebar">
+          <div class="admin-sidebar-header">
+            <span class="logo-icon">🍛</span>
+            <span>Natvarnand</span>
+          </div>
+          <ul class="admin-nav">
+            <li><button class="admin-nav-btn active" data-panel="dashboard" onclick="switchAdminPanel('dashboard')">📊 Dashboard</button></li>
+            <li><button class="admin-nav-btn" data-panel="menu-mgmt" onclick="switchAdminPanel('menu-mgmt')">🍽️ Menu</button></li>
+            <li><button class="admin-nav-btn" data-panel="orders" onclick="switchAdminPanel('orders')">📦 Orders</button></li>
+            <li><button class="admin-nav-btn" data-panel="customers" onclick="switchAdminPanel('customers')">👥 Customers</button></li>
+            <li><button class="admin-nav-btn admin-logout-btn" onclick="adminLogout()">🚪 Logout</button></li>
+          </ul>
+        </div>
+        <div class="admin-main">
+          <div class="admin-header">
+            <h2 id="admin-panel-title">Dashboard</h2>
+            <button class="hamburger admin-hamburger" id="admin-sidebar-toggle" aria-label="Toggle sidebar">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+
+          <!-- Dashboard Panel -->
+          <div class="admin-panel active" id="panel-dashboard">
+            <div class="admin-stats-grid">
+              <div class="admin-stat-card">
+                <div class="admin-stat-icon" style="background:linear-gradient(135deg,#ff6b35,#f7931e)">📦</div>
+                <div class="admin-stat-info">
+                  <div class="admin-stat-num" id="stat-orders">0</div>
+                  <div class="admin-stat-label">Total Orders</div>
+                </div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="admin-stat-icon" style="background:linear-gradient(135deg,#e8363a,#ff6b35)">💰</div>
+                <div class="admin-stat-info">
+                  <div class="admin-stat-num" id="stat-revenue">₹0</div>
+                  <div class="admin-stat-label">Revenue</div>
+                </div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="admin-stat-icon" style="background:linear-gradient(135deg,#2ecc71,#27ae60)">👥</div>
+                <div class="admin-stat-info">
+                  <div class="admin-stat-num" id="stat-customers">0</div>
+                  <div class="admin-stat-label">Customers</div>
+                </div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="admin-stat-icon" style="background:linear-gradient(135deg,#3498db,#2980b9)">🍽️</div>
+                <div class="admin-stat-info">
+                  <div class="admin-stat-num" id="stat-items">0</div>
+                  <div class="admin-stat-label">Menu Items</div>
+                </div>
+              </div>
+            </div>
+            <div class="admin-table-card">
+              <h3>Recent Orders</h3>
+              <div class="table-responsive">
+                <table class="admin-table" id="recent-orders-table">
+                  <thead>
+                    <tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr>
+                  </thead>
+                  <tbody id="recent-orders-body">
+                    <tr><td colspan="5" class="table-empty">No orders yet</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Menu Management Panel -->
+          <div class="admin-panel" id="panel-menu-mgmt">
+            <div class="admin-panel-header">
+              <h3>Menu Management</h3>
+              <button class="btn btn-primary btn-sm" onclick="openAddItemModal()">+ Add Item</button>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table" id="menu-table">
+                <thead>
+                  <tr><th>Icon</th><th>Name</th><th>Category</th><th>Price</th><th>Actions</th></tr>
+                </thead>
+                <tbody id="menu-table-body">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Orders Panel -->
+          <div class="admin-panel" id="panel-orders">
+            <h3>All Orders</h3>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th></tr>
+                </thead>
+                <tbody id="all-orders-body">
+                  <tr><td colspan="6" class="table-empty">No orders yet</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Customers Panel -->
+          <div class="admin-panel" id="panel-customers">
+            <h3>Customer Details</h3>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr><th>Name</th><th>Email</th><th>Phone</th><th>City</th><th>Orders</th></tr>
+                </thead>
+                <tbody id="customers-body">
+                  <tr><td colspan="5" class="table-empty">No customers yet</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add/Edit Item Modal -->
+        <div class="modal-overlay" id="item-modal">
+          <div class="modal glass-card">
+            <button class="modal-close" onclick="closeItemModal()">&times;</button>
+            <h2 id="item-modal-title">Add Menu Item</h2>
+            <form id="item-form" onsubmit="saveMenuItem(event)">
+              <div class="input-group">
+                <input type="text" id="item-name" class="form-input" placeholder=" " required>
+                <label for="item-name" class="form-label">Item Name</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <select id="item-category" class="form-input form-select" required>
+                  <option value="">Select Category</option>
+                  <option value="starters">Starters</option>
+                  <option value="main-course">Main Course</option>
+                  <option value="fast-food">Fast Food</option>
+                  <option value="drinks">Drinks</option>
+                  <option value="desserts">Desserts</option>
+                </select>
+                <label for="item-category" class="form-label">Category</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="number" id="item-price" class="form-input" placeholder=" " required min="1">
+                <label for="item-price" class="form-label">Price (₹)</label>
+                <span class="input-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="text" id="item-icon" class="form-input" placeholder=" " required>
+                <label for="item-icon" class="form-label">Icon (emoji)</label>
+                <span class="input-line"></span>
+              </div>
+              <input type="hidden" id="item-edit-id" value="">
+              <button type="submit" class="btn btn-primary btn-glow btn-block">Save Item</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="site-footer" class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <span class="logo-icon">🍛</span>
+            <span class="logo-text">Natvarnand</span>
+          </div>
+          <p>Experience the finest flavors of authentic Indian cuisine. Fresh ingredients, bold spices, unforgettable taste. Owned by Pradeep Kumar Sharma.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#order">Order Online</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Opening Hours</h4>
+          <ul>
+            <li>Mon - Fri: 11am - 11pm</li>
+            <li>Saturday: 10am - 12am</li>
+            <li>Sunday: 10am - 10pm</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Natvarnand Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/db.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

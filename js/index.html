@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Natvarnand Restaurant — Authentic Indian cuisine with modern flair. Order online, explore our menu, and experience premium dining.">
+  <title>Natvarnand Restaurant</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-flame"><i class="fa-solid fa-fire"></i></div>
+      <h2>Natvarnand</h2>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Notification Popup -->
+  <div id="notification" class="notification hidden">
+    <span id="notification-icon"><i class="fa-solid fa-check"></i></span>
+    <span id="notification-text"></span>
+    <button class="notification-close" onclick="hideNotification()">&times;</button>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" id="nav-logo">
+        <img src="assets/images/logo.png" alt="Natvarnand" class="logo-img">
+        <span class="logo-text">Natvarnand</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#home" class="nav-link active" data-page="home">Home</a>
+        <a href="#menu" class="nav-link" data-page="menu">Menu</a>
+        <a href="#order" class="nav-link" data-page="order">Order Online</a>
+        <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+        <a href="#admin" class="nav-link nav-admin-link" data-page="admin" id="admin-nav-link">Admin</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
+          <span class="theme-icon"><i class="fa-solid fa-moon"></i></span>
+        </button>
+        <button class="cart-btn" id="cart-btn" onclick="navigateTo('order')">
+          <i class="fa-solid fa-cart-shopping"></i> <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <a href="#login" class="nav-btn" id="auth-btn" data-page="login">Login</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="app">
+    <!-- HOME PAGE -->
+    <section id="page-home" class="page active">
+      <div class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content animate-fade-up">
+          <span class="hero-badge"><i class="fa-solid fa-star"></i> Authentic Indian Cuisine</span>
+          <h1>Welcome to<br><span class="hero-highlight">Natvarnand</span></h1>
+          <p class="hero-desc">Experience the rich flavors of India with our handcrafted dishes made from the finest spices and freshest ingredients.</p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary btn-glow" onclick="navigateTo('menu')">Explore Menu</button>
+            <button class="btn btn-outline" onclick="navigateTo('order')">Order Now</button>
+          </div>
+        </div>
+        <div class="hero-scroll-indicator">
+          <span>Scroll Down</span>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+
+      <!-- Featured Section -->
+      <div class="section" id="featured-section">
+        <div class="container">
+          <h2 class="section-title animate-on-scroll">Our Specialties</h2>
+          <p class="section-subtitle animate-on-scroll">Handpicked favorites from our kitchen</p>
+          <div class="featured-grid" id="featured-grid"></div>
+        </div>
+      </div>
+
+      <!-- About Section -->
+      <div class="section section-alt" id="about-section">
+        <div class="container">
+          <div class="about-grid animate-on-scroll">
+            <div class="about-content">
+              <span class="about-badge">Our Story</span>
+              <h2>A Legacy of Flavors</h2>
+              <p><strong>Owner: Pradeep Kumar Sharma</strong></p>
+              <p>Founded in 2010, Natvarnand has been serving authentic Indian cuisine that celebrates the rich culinary heritage of India. Our chefs bring decades of experience, using traditional recipes passed down through generations.</p>
+              <div class="about-stats">
+                <div class="stat-item"><span class="stat-number">15+</span><span class="stat-label">Years</span></div>
+                <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Dishes</span></div>
+                <div class="stat-item"><span class="stat-number">10K+</span><span class="stat-label">Customers</span></div>
+                <div class="stat-item"><span class="stat-number">4.8</span><span class="stat-label">Rating</span></div>
+              </div>
+            </div>
+            <div class="about-image">
+              <img src="assets/images/hero-bg.png" alt="Our Restaurant" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="section" id="testimonials-section">
+        <div class="container">
+          <h2 class="section-title animate-on-scroll">What Our Guests Say</h2>
+          <div class="testimonials-grid animate-on-scroll">
+            <div class="testimonial-card glass-card">
+              <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>"The Paneer Butter Masala here is the best I've ever had. Absolutely incredible flavors!"</p>
+              <div class="testimonial-author"><strong>Priya S.</strong><span>Regular Customer</span></div>
+            </div>
+            <div class="testimonial-card glass-card">
+              <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>"Amazing ambiance and the biryani is to die for. My family's favorite weekend spot."</p>
+              <div class="testimonial-author"><strong>Rahul M.</strong><span>Food Blogger</span></div>
+            </div>
+            <div class="testimonial-card glass-card">
+              <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p>"Fast delivery and food arrives hot. The online ordering system is so convenient!"</p>
+              <div class="testimonial-author"><strong>Anita K.</strong><span>Online Customer</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU PAGE -->
+    <section id="page-menu" class="page">
+      <div class="page-header">
+        <h1 class="animate-fade-up">Our Menu</h1>
+        <p class="animate-fade-up">Discover our carefully crafted dishes</p>
+      </div>
+      <div class="container">
+        <div class="menu-filters animate-on-scroll" id="menu-filters"></div>
+        <div class="menu-grid" id="menu-grid"></div>
+      </div>
+    </section>
+
+    <!-- ORDER PAGE -->
+    <section id="page-order" class="page">
+      <div class="page-header">
+        <h1 class="animate-fade-up">Your Order</h1>
+        <p class="animate-fade-up">Review your cart and checkout</p>
+      </div>
+      <div class="container">
+        <div class="order-layout">
+          <div class="cart-section glass-card animate-on-scroll" id="cart-section">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Cart Items</h3>
+            <div id="cart-items" class="cart-items"></div>
+            <div id="cart-empty" class="cart-empty">
+              <span class="cart-empty-icon"><i class="fa-solid fa-utensils"></i></span>
+              <p>Your cart is empty</p>
+              <button class="btn btn-primary" onclick="navigateTo('menu')">Browse Menu</button>
+            </div>
+          </div>
+          <div class="order-summary-section animate-on-scroll">
+            <div class="glass-card order-summary" id="order-summary">
+              <h3>Order Summary</h3>
+              <div id="summary-details"></div>
+              <div class="summary-total">
+                <span>Total</span>
+                <span id="summary-total-price">₹0</span>
+              </div>
+              <button class="btn btn-primary btn-block btn-glow" id="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+            </div>
+            <!-- Customer Form (shown on checkout) -->
+            <div class="glass-card customer-form hidden" id="customer-form-section">
+              <h3><i class="fa-solid fa-clipboard-list"></i> Delivery Details</h3>
+              <form id="customer-form" class="animated-form" onsubmit="return submitCustomerForm(event)">
+                <div class="form-group">
+                  <input type="text" id="cust-name" required autocomplete="name">
+                  <label for="cust-name">Full Name</label>
+                  <span class="form-error"></span>
+                </div>
+                <div class="form-group">
+                  <input type="tel" id="cust-phone" required pattern="[0-9]{10}" autocomplete="tel">
+                  <label for="cust-phone">Phone Number</label>
+                  <span class="form-error"></span>
+                </div>
+                <div class="form-group">
+                  <input type="email" id="cust-email" required autocomplete="email">
+                  <label for="cust-email">Email Address</label>
+                  <span class="form-error"></span>
+                </div>
+                <div class="form-group">
+                  <input type="text" id="cust-address" required autocomplete="street-address">
+                  <label for="cust-address">Address</label>
+                  <span class="form-error"></span>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <input type="text" id="cust-city" required autocomplete="address-level2">
+                    <label for="cust-city">City</label>
+                    <span class="form-error"></span>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="cust-pincode" required pattern="[0-9]{6}" autocomplete="postal-code">
+                    <label for="cust-pincode">Pincode</label>
+                    <span class="form-error"></span>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Continue to Payment</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="page-contact" class="page">
+      <div class="page-header">
+        <h1 class="animate-fade-up">Contact Us</h1>
+        <p class="animate-fade-up">We'd love to hear from you</p>
+      </div>
+      <div class="container">
+        <div class="contact-grid animate-on-scroll">
+          <div class="glass-card contact-info">
+            <h3>Get in Touch</h3>
+            <div class="contact-item"><span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span><div><strong>Address</strong><p>Kachri Antah (325209)</p></div></div>
+            <div class="contact-item"><span class="contact-icon"><i class="fa-solid fa-phone"></i></span><div><strong>Phone</strong><p>+91 8278642578</p></div></div>
+            <div class="contact-item"><span class="contact-icon"><i class="fa-solid fa-envelope"></i></span><div><strong>Email</strong><p>Natvarnand@gmail.com</p></div></div>
+            <div class="contact-item"><span class="contact-icon"><i class="fa-solid fa-clock"></i></span><div><strong>Hours</strong><p>Mon-Sun: 11:00 AM - 11:00 PM</p></div></div>
+          </div>
+          <div class="glass-card">
+            <h3>Send a Message</h3>
+            <form id="contact-form" class="animated-form" onsubmit="return submitContactForm(event)">
+              <div class="form-group"><input type="text" id="contact-name" required><label for="contact-name">Your Name</label><span class="form-error"></span></div>
+              <div class="form-group"><input type="email" id="contact-email" required><label for="contact-email">Email</label><span class="form-error"></span></div>
+              <div class="form-group"><input type="tel" id="contact-phone" required><label for="contact-phone">Phone</label><span class="form-error"></span></div>
+              <div class="form-group"><textarea id="contact-message" required rows="4"></textarea><label for="contact-message">Message</label><span class="form-error"></span></div>
+              <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGIN PAGE -->
+    <section id="page-login" class="page">
+      <div class="page-header">
+        <h1 class="animate-fade-up">Welcome Back</h1>
+        <p class="animate-fade-up">Login or create an account</p>
+      </div>
+      <div class="container auth-container">
+        <div class="glass-card auth-card animate-on-scroll">
+          <div class="auth-tabs">
+            <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Login</button>
+            <button class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+          </div>
+          <!-- Login Form -->
+          <form id="login-form" class="animated-form auth-form" onsubmit="return handleLogin(event)">
+            <div class="form-group"><input type="text" id="login-username" required><label for="login-username">Username or Email</label><span class="form-error"></span></div>
+            <div class="form-group"><input type="password" id="login-password" required><label for="login-password">Password</label><span class="form-error"></span></div>
+            <button type="submit" class="btn btn-primary btn-block btn-glow">Login</button>
+            <p class="auth-switch">Don't have an account? <a href="#" onclick="switchAuthTab('signup')">Sign Up</a></p>
+          </form>
+          <!-- Signup Form -->
+          <form id="signup-form" class="animated-form auth-form hidden" onsubmit="return handleSignup(event)">
+            <div class="form-group"><input type="text" id="signup-username" required><label for="signup-username">Username</label><span class="form-error"></span></div>
+            <div class="form-group"><input type="email" id="signup-email" required><label for="signup-email">Email Address</label><span class="form-error"></span></div>
+            <div class="form-group"><input type="password" id="signup-password" required minlength="6"><label for="signup-password">Password</label><span class="form-error"></span></div>
+            <div class="form-group"><input type="password" id="signup-confirm" required><label for="signup-confirm">Confirm Password</label><span class="form-error"></span></div>
+            <button type="submit" class="btn btn-primary btn-block btn-glow">Create Account</button>
+            <p class="auth-switch">Already have an account? <a href="#" onclick="switchAuthTab('login')">Login</a></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT PAGE -->
+    <section id="page-payment" class="page">
+      <div class="page-header">
+        <h1 class="animate-fade-up">Payment</h1>
+        <p class="animate-fade-up">Complete your order</p>
+      </div>
+      <div class="container">
+        <div class="payment-layout animate-on-scroll">
+          <div class="glass-card payment-methods">
+            <h3><i class="fa-solid fa-credit-card"></i> Select Payment Method</h3>
+            <div class="payment-options">
+              <label class="payment-option selected" id="pay-opt-upi">
+                <input type="radio" name="payment" value="upi" checked onchange="switchPaymentMethod('upi')">
+                <div class="payment-option-content"><span class="payment-icon"><i class="fa-solid fa-mobile-screen"></i></span><span>UPI</span></div>
+              </label>
+              <label class="payment-option" id="pay-opt-card">
+                <input type="radio" name="payment" value="card" onchange="switchPaymentMethod('card')">
+                <div class="payment-option-content"><span class="payment-icon"><i class="fa-solid fa-credit-card"></i></span><span>Card</span></div>
+              </label>
+              <label class="payment-option" id="pay-opt-cod">
+                <input type="radio" name="payment" value="cod" onchange="switchPaymentMethod('cod')">
+                <div class="payment-option-content"><span class="payment-icon"><i class="fa-solid fa-money-bill-wave"></i></span><span>Cash on Delivery</span></div>
+              </label>
+            </div>
+            <!-- UPI Fields -->
+            <div class="payment-fields" id="fields-upi">
+              <div class="form-group"><input type="text" id="upi-id" required placeholder=" "><label for="upi-id">UPI ID (e.g. name@upi)</label></div>
+            </div>
+            <!-- Card Fields -->
+            <div class="payment-fields hidden" id="fields-card">
+              <div class="form-group"><input type="text" id="card-number" maxlength="19" placeholder=" "><label for="card-number">Card Number</label></div>
+              <div class="form-row">
+                <div class="form-group"><input type="text" id="card-expiry" maxlength="5" placeholder=" "><label for="card-expiry">MM/YY</label></div>
+                <div class="form-group"><input type="text" id="card-cvv" maxlength="3" placeholder=" "><label for="card-cvv">CVV</label></div>
+              </div>
+            </div>
+            <!-- COD -->
+            <div class="payment-fields hidden" id="fields-cod">
+              <div class="cod-message">
+                <span><i class="fa-solid fa-money-bill-wave fa-2x"></i></span>
+                <p>Pay with cash when your order is delivered. No additional charges.</p>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block btn-glow" id="pay-btn" onclick="processPayment()">Pay Now</button>
+          </div>
+          <div class="glass-card payment-summary">
+            <h3><i class="fa-solid fa-box"></i> Order Summary</h3>
+            <div id="payment-order-items"></div>
+            <div class="summary-total"><span>Total</span><span id="payment-total">₹0</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- Payment Success Modal -->
+      <div class="modal hidden" id="payment-success-modal">
+        <div class="modal-content glass-card">
+          <div class="success-animation"><div class="checkmark"><i class="fa-solid fa-check"></i></div></div>
+          <h2>Payment Successful!</h2>
+          <p>Your order has been placed successfully.</p>
+          <p class="order-id-text" id="success-order-id"></p>
+          <button class="btn btn-primary" onclick="closePaymentModal()">Back to Home</button>
+        </div>
+      </div>
+      <div class="modal hidden" id="payment-failed-modal">
+        <div class="modal-content glass-card">
+          <div class="fail-animation"><div class="crossmark"><i class="fa-solid fa-xmark"></i></div></div>
+          <h2>Payment Failed</h2>
+          <p>Something went wrong. Please try again.</p>
+          <button class="btn btn-primary" onclick="closePaymentFailedModal()">Try Again</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN PAGE -->
+    <section id="page-admin" class="page">
+      <div class="admin-layout">
+        <aside class="admin-sidebar glass-card" id="admin-sidebar">
+          <div class="admin-sidebar-header">
+            <h3><i class="fa-solid fa-shield-halved"></i> Admin Panel</h3>
+          </div>
+          <nav class="admin-nav">
+            <button class="admin-nav-btn active" data-panel="dashboard" onclick="switchAdminPanel('dashboard')"><i class="fa-solid fa-chart-line"></i> Dashboard</button>
+            <button class="admin-nav-btn" data-panel="manage-menu" onclick="switchAdminPanel('manage-menu')"><i class="fa-solid fa-utensils"></i> Manage Menu</button>
+            <button class="admin-nav-btn" data-panel="orders" onclick="switchAdminPanel('orders')"><i class="fa-solid fa-box"></i> Orders</button>
+            <button class="admin-nav-btn" data-panel="customers" onclick="switchAdminPanel('customers')"><i class="fa-solid fa-users"></i> Customers</button>
+          </nav>
+        </aside>
+        <div class="admin-main">
+          <!-- Dashboard -->
+          <div class="admin-panel active" id="panel-dashboard">
+            <h2>Dashboard</h2>
+            <div class="dashboard-cards" id="dashboard-cards"></div>
+            <div class="glass-card" style="margin-top:1.5rem">
+              <h3>Recent Orders</h3>
+              <div class="table-wrapper"><table class="admin-table" id="recent-orders-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Total</th><th>Status</th><th>Date</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </div>
+          <!-- Manage Menu -->
+          <div class="admin-panel" id="panel-manage-menu">
+            <h2>Manage Menu</h2>
+            <div class="glass-card">
+              <h3>Add New Item</h3>
+              <form id="add-menu-form" class="animated-form admin-form" onsubmit="return addMenuItem(event)">
+                <div class="form-row">
+                  <div class="form-group"><input type="text" id="item-name" required placeholder=" "><label for="item-name">Item Name</label></div>
+                  <div class="form-group"><input type="number" id="item-price" required min="1" placeholder=" "><label for="item-price">Price (₹)</label></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <select id="item-category" required>
+                      <option value="">Select Category</option>
+                      <option value="Starters">Starters</option>
+                      <option value="Main Course">Main Course</option>
+                      <option value="Fast Food">Fast Food</option>
+                      <option value="Drinks">Drinks</option>
+                      <option value="Desserts">Desserts</option>
+                    </select>
+                    <label for="item-category" class="select-label">Category</label>
+                  </div>
+                  <div class="form-group"><input type="text" id="item-desc" placeholder=" "><label for="item-desc">Description</label></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Item</button>
+              </form>
+            </div>
+            <div class="glass-card" style="margin-top:1.5rem">
+              <h3>Menu Items</h3>
+              <div class="table-wrapper"><table class="admin-table" id="menu-items-table"><thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </div>
+          <!-- Orders Panel -->
+          <div class="admin-panel" id="panel-orders">
+            <h2>All Orders</h2>
+            <div class="glass-card">
+              <div class="table-wrapper"><table class="admin-table" id="all-orders-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </div>
+          <!-- Customers Panel -->
+          <div class="admin-panel" id="panel-customers">
+            <h2>Customers</h2>
+            <div class="glass-card">
+              <div class="table-wrapper"><table class="admin-table" id="customers-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>City</th><th>Orders</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3><i class="fa-solid fa-fire"></i> Natvarnand</h3>
+          <p>Authentic Indian cuisine crafted with love and the finest spices.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="#home" onclick="navigateTo('home')">Home</a>
+          <a href="#menu" onclick="navigateTo('menu')">Menu</a>
+          <a href="#order" onclick="navigateTo('order')">Order Online</a>
+          <a href="#contact" onclick="navigateTo('contact')">Contact</a>
+        </div>
+        <div class="footer-links">
+          <h4>Hours</h4>
+          <p>Monday - Sunday</p>
+          <p>11:00 AM - 11:00 PM</p>
+          <p><i class="fa-solid fa-phone"></i> +91 8278642578</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Natvarnand Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/db.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
